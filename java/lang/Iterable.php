@@ -1,5 +1,4 @@
 <?php
-
 namespace java\util;
 
 /**
@@ -7,6 +6,5 @@ namespace java\util;
  * @author ahorvath
  */
 interface Iterable {
-
-    public function iterator();
+	public function iterator();
 }

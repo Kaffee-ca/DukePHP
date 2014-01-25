@@ -1,5 +1,4 @@
 <?php
-
 namespace java\lang;
 
 /**
@@ -7,7 +6,6 @@ namespace java\lang;
  * @author ahorvath
  */
 interface Comparable {
-
 	/**
 	 * Compares this with the specified object for order.
 	 * @param $o mixed The object compared.

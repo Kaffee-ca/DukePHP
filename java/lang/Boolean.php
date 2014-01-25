@@ -1,5 +1,4 @@
 <?php
-
 namespace java\lang;
 
 /**
@@ -8,7 +7,6 @@ namespace java\lang;
  * @final
  */
 final class Boolean extends Object implements Serializable, Comparable {
-
 	/**
 	 * .
 	 * @param boolean|string the value of the Boolean.
@@ -22,19 +20,16 @@ final class Boolean extends Object implements Serializable, Comparable {
 			$this->_v = false;
 		}
 	}
-
 	/**
 	 * .
 	 * @var boolean
 	 */
 	public static $TRUE = true;
-
 	/**
 	 * .
 	 * @var boolean
 	 */
 	public static $FALSE = false;
-
 	/**
 	 * Value of this object as a boolean.
 	 * @return boolean
@@ -42,7 +37,6 @@ final class Boolean extends Object implements Serializable, Comparable {
 	public function booleanValue() {
 		return $this->_v;
 	}
-
 	/**
 	 * Duck support
 	 * @return int
@@ -53,7 +47,6 @@ final class Boolean extends Object implements Serializable, Comparable {
 		}
 		return ($v->booleanValue() == true) ? -1 : 0;
 	}
-
 	/**
 	 * .
 	 * @param String $str The string to seek in.
@@ -62,7 +55,6 @@ final class Boolean extends Object implements Serializable, Comparable {
 	public static function getBoolean($str) {
 		return parseBoolean($str);
 	}
-
 	/**
 	 * .
 	 * @param String $str The string to seek in.
@@ -85,7 +77,6 @@ final class Boolean extends Object implements Serializable, Comparable {
 				throw new ParseException();
 		}
 	}
-
 	/**
 	 * .
 	 * @return string
@@ -93,7 +84,6 @@ final class Boolean extends Object implements Serializable, Comparable {
 	public function __toString() {
 		return ($this->_v == true) ? \PhpPrimitives::$TRUE : \PhpPrimitives::$FALSE;
 	}
-
 	/**
 	 * .
 	 * @param boolean $b the boolean to be converted
@@ -106,7 +96,6 @@ final class Boolean extends Object implements Serializable, Comparable {
 			throw new BadMethodCallException('Param $b must be boolean typed.');
 		}
 	}
-
 	/**
 	 * .
 	 * @param boolean|string $v
@@ -120,16 +109,13 @@ final class Boolean extends Object implements Serializable, Comparable {
 		// Not so good
 		throw new BadMethodCallException('Check method parameters.');
 	}
-
 	public function serialize() {
 		if ($this->_v == true) {
 			return 1;
 		}
 		return 0;
 	}
-
 	public function unserialize($serialized) {
 		$this->_v = $serialized === 1;
 	}
-
 }

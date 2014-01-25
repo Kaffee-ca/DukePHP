@@ -1,5 +1,4 @@
 <?php
-
 namespace java\util;
 
 /**
@@ -7,5 +6,5 @@ namespace java\util;
  * @author ahorvath
  */
 interface Set extends Collection {
-	
+
 }
