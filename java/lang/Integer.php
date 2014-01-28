@@ -94,9 +94,9 @@ final class Integer extends Number implements Comparable {
 		return $this->_v;
 	}
 	public function shortValue() {
-		return $this->_v & 0x0000ffff;
+		return $this->_v & 0xffff;
 	}
 	public function byteValue() {
-		return $this->_v & 0x000000ff;
+		return $this->_v & 0xff;
 	}
 }
