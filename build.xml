@@ -1,0 +1,57 @@
+<project name="Kaffee Build" basedir=".">
+	<description>
+		Build DukePHP
+	</description>
+	<!-- Set global properties for this build -->
+        <loadproperties srcFile="project.properties" />
+	<loadproperties srcFile="../environment.properties" />
+        <!-- Define directories -->
+	<property name="src.dir" location="php" />
+	<property name="build.dir" location="../../build/${PROJECT_NAME}" />
+	<property name="dist.dir"  location="../../dist/${PROJECT_NAME}" />
+	<property name="temp.dir"  location="../../tmp/${PROJECT_NAME}" />
+        <property name="kompressor.jar"  location="${ENVIRONMENT.JAVA_TOOLS_DIR}/kaffee-kompressor-1.0.jar" />
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+                <mkdir dir="${temp.dir}" />
+	</target>
+
+	<target name="build" depends="init"
+			description="" >
+		<!-- Copy files -->
+		<copy todir="${build.dir}">
+			<fileset dir="${src.dir}" />
+		</copy>
+	</target>
+
+	<target name="dist" depends="compress"
+			description="Generate PHAR from files" >
+		<!-- Create the distribution directory and PHAR -->
+                <tstamp/>
+		<zip destfile="${dist.dir}/${PROJECT_NAME}-${DSTAMP}.phar"
+			 basedir="${build.dir}"
+			 update="true"
+		/>
+	</target>
+	<target name="compress"
+			description="Use Kompressor to minize PHP code" >
+		<mkdir dir="${temp.dir}"/>
+		<java jar="${kompressor.jar}" fork="true">
+			<arg value="-R" />
+			<arg value="-o" />
+			<arg value="${build.dir}" />
+			<arg value="${src.dir}" />
+		</java>
+	</target>
+	<target name="clean"
+			description="Clean up" >
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+		<delete dir="${temp.dir}" />
+	</target>
+</project>
